@@ -1,14 +1,14 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Form } from "./components/Form";
-
+import { Table } from "./components/Table";
 function App() {
   const [taskList, setTaskList] = useState([]);
   const addTaskList = (taskObj) => {
     const obj = {
       ...taskObj,
       id: randomIdGenerator(),
-      type: "entry",
+      type: "bad",
     };
     setTaskList([...taskList, obj]);
   };
@@ -33,28 +33,7 @@ function App() {
         <Form addTaskList={addTaskList} />
 
         {/* <!-- Tables --> */}
-        <div className="row p-5">
-          <div className="col bg-subtle text-center">
-            {/* <!-- Entry List --> */}
-            <h2>Entry List</h2>
-            <table className="table table-hover table-borderless">
-              <tbody id="entryList"></tbody>
-            </table>
-          </div>
-          <div className="col bg-subtle text-center">
-            {/* <!-- Bad List --> */}
-            <h2>Bad List</h2>
-            <table className="table table-hover table-borderless">
-              <tbody id="badList"></tbody>
-            </table>
-            <div className="alert alert-light">
-              You could have saved <span id="savedHours"></span> hrs
-            </div>
-          </div>
-          <div className="alert alert-light">
-            The total hours allocated = <span id="totalHours">0</span> hrs
-          </div>
-        </div>
+        <Table taskList={taskList} />
       </div>
     </div>
   );
