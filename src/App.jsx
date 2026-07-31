@@ -4,15 +4,18 @@ import { Form } from "./components/Form";
 import { Table } from "./components/Table";
 function App() {
   const [taskList, setTaskList] = useState([]);
+  const hrsPerWeek = 24 * 7;
+
   const addTaskList = (taskObj) => {
-    const obj = {
-      ...taskObj,
-      hours: Number(taskObj.hours) || 0,
-      id: randomIdGenerator(),
-      type: "entry",
-    };
+    const hours = Number(taskObj.hours) || 0;
+    const ttlHr = taskList.reduce((acc, item) => acc + Number(item.hours), 0);
+
+    if (ttlHr + hours > hrsPerWeek) {
+      return alert("Sorry Boss, not enough time left this week for this task.");
+    }
+
+    const obj = { ...taskObj, hours, id: randomIdGenerator(), type: "entry" };
     setTaskList([...taskList, obj]);
-    console.log(taskList);
   };
   const switchTask = (id, type) => {
     setTaskList(
