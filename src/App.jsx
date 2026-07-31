@@ -7,12 +7,30 @@ function App() {
   const addTaskList = (taskObj) => {
     const obj = {
       ...taskObj,
+      hours: Number(taskObj.hours) || 0,
       id: randomIdGenerator(),
-      type: "bad",
+      type: "entry",
     };
     setTaskList([...taskList, obj]);
+    console.log(taskList);
   };
-  console.log(taskList);
+  const switchTask = (id, type) => {
+    setTaskList(
+      taskList.map((item) => {
+        if (item.id == id) {
+          item.type = type;
+        }
+        return item;
+      }),
+    );
+  };
+  const handleDeleteButton = (id) => {
+    if (window.confirm("Are you sure you want to delete this task?")) {
+      taskList = setTaskList(taskList.filter((item) => item.id !== id));
+    }
+  };
+
+  // console.log(taskList);
   const randomIdGenerator = (length = 6) => {
     const str =
       "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
@@ -33,7 +51,11 @@ function App() {
         <Form addTaskList={addTaskList} />
 
         {/* <!-- Tables --> */}
-        <Table taskList={taskList} />
+        <Table
+          taskList={taskList}
+          switchTask={switchTask}
+          handleDeleteButton={handleDeleteButton}
+        />
       </div>
     </div>
   );
