@@ -19,7 +19,7 @@ export const Form = ({ addTaskList }) => {
   return (
     <form
       id="form"
-      className="form border p-5 rounded"
+      className="form  border p-5 rounded"
       onSubmit={handleOnSubmit}
       action="javascript:void(0)"
     >

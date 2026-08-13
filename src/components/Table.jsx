@@ -15,6 +15,7 @@ export const Table = ({ taskList, switchTask, handleDeleteButton }) => {
       <div className="col bg-subtle text-center">
         {/* <!-- Entry List --> */}
         <h2>Entry List</h2>
+        <hr />
         <table className="table table-hover table-borderless">
           <tbody id="entryList">
             {entryList.map((item, i) => {
@@ -48,6 +49,7 @@ export const Table = ({ taskList, switchTask, handleDeleteButton }) => {
       <div className="col bg-subtle text-center">
         {/* <!-- Bad List --> */}
         <h2>Bad List</h2>
+        <hr />
         <table className="table table-hover table-borderless">
           <tbody id="badList">
             {badList.map((item, i) => (
