@@ -7,7 +7,7 @@ export const Table = ({ taskList, switchTask, handleDeleteButton }) => {
   const hrsPerWeek = 24 * 7;
 
   const ttlHr = taskList.reduce((acc, item) => {
-    return acc + Number(item.hours);
+    return acc + Number(item.hr);
   }, 0);
 
   return (
@@ -20,7 +20,7 @@ export const Table = ({ taskList, switchTask, handleDeleteButton }) => {
           <tbody id="entryList">
             {entryList.map((item, i) => {
               return (
-                <tr className="border pb-2" key={item.id}>
+                <tr className="border pb-2" key={item._id}>
                   <td>{i + 1}</td>
                   <td>{item.task}</td>
                   <td>{item.hr}</td>

@@ -4,15 +4,18 @@ import { Form } from "./components/Form";
 import { Table } from "./components/Table";
 import { fetchAllTask, postTask } from "./helpers/axiosHelper";
 import { useEffect } from "react";
+import { useRef } from "react";
 function App() {
   let [taskList, setTaskList] = useState([]);
 
   const [resp, setResp] = useState([]);
   const hrsPerWeek = 24 * 7;
 
+  const shouldFetchRef = useRef(true);
+
   useEffect(() => {
-    //
-    getAllTask();
+    shouldFetchRef.current && getAllTask();
+    shouldFetchRef.current = false;
   }, []);
 
   const addTaskList = async (taskObj) => {
@@ -28,10 +31,12 @@ function App() {
     setResp(response);
   };
 
+  let i = 0;
   const getAllTask = async () => {
     //call the axiosHelper class to fetch all the task
 
     //mount the task data to taskList state
+    console.log(i++);
     const data = await fetchAllTask();
     console.log(data);
 
