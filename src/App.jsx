@@ -5,6 +5,8 @@ import { Table } from "./components/Table";
 import { postTask } from "./helpers/axiosHelper";
 function App() {
   let [taskList, setTaskList] = useState([]);
+
+  const [resp, setResp] = useState([]);
   const hrsPerWeek = 24 * 7;
 
   const addTaskList = async (taskObj) => {
@@ -17,7 +19,7 @@ function App() {
     //call api and send data to database
 
     const response = await postTask(taskObj);
-    console.log(response);
+    setResp(response);
   };
   const switchTask = (id, type) => {
     setTaskList(
@@ -51,6 +53,17 @@ function App() {
       <div className="container p-5">
         {/* <!-- Title --> */}
         <h2 className="text-center p-2">Not To Do List</h2>
+        {resp?.message && (
+          <div
+            className={
+              resp?.status == "success"
+                ? "alert alert-success"
+                : "alert alert-danger"
+            }
+          >
+            {resp?.message}
+          </div>
+        )}
 
         {/* <!-- Form --> */}
         <Form addTaskList={addTaskList} />
