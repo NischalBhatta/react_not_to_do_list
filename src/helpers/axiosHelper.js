@@ -30,3 +30,16 @@ export const postTask = async (data) => {
     };
   }
 };
+
+export const fetchAllTask = async () => {
+  try {
+    const response = await axios.get(apiEP);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: "error.message",
+    };
+  }
+};

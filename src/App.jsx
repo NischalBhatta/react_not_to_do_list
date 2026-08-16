@@ -2,12 +2,18 @@ import "./App.css";
 import React, { useState } from "react";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
-import { postTask } from "./helpers/axiosHelper";
+import { fetchAllTask, postTask } from "./helpers/axiosHelper";
+import { useEffect } from "react";
 function App() {
   let [taskList, setTaskList] = useState([]);
 
   const [resp, setResp] = useState([]);
   const hrsPerWeek = 24 * 7;
+
+  useEffect(() => {
+    //
+    getAllTask();
+  }, []);
 
   const addTaskList = async (taskObj) => {
     // if (ttlHr + hours > hrsPerWeek) {
@@ -20,6 +26,17 @@ function App() {
 
     const response = await postTask(taskObj);
     setResp(response);
+  };
+
+  const getAllTask = async () => {
+    //call the axiosHelper class to fetch all the task
+
+    //mount the task data to taskList state
+    const data = await fetchAllTask();
+    console.log(data);
+
+    //mount the task data to taskList state
+    data?.status === "success" && setTaskList(data.tasks);
   };
   const switchTask = (id, type) => {
     setTaskList(

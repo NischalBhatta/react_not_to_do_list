@@ -23,7 +23,7 @@ export const Table = ({ taskList, switchTask, handleDeleteButton }) => {
                 <tr className="border pb-2" key={item.id}>
                   <td>{i + 1}</td>
                   <td>{item.task}</td>
-                  <td>{item.hours}</td>
+                  <td>{item.hr}</td>
                   <td className="d-flex justify-content-end">
                     <div className="">
                       <button
