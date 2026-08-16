@@ -41,8 +41,8 @@ export const Form = ({ addTaskList }) => {
             className="form-control"
             placeholder="4"
             aria-label="Last name"
-            name="hours"
-            id="hours"
+            name="hr"
+            id="hr"
             min="1"
             onChange={handleOnChange}
           />
