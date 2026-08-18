@@ -46,6 +46,10 @@ function App() {
   const switchTask = async (_id, type) => {
     // call the axiosHelper class to switch the task
     const response = await updateTask({ _id, type });
+    if (response.status === "success") {
+      //re-fetch all the task
+      getAllTask();
+    }
     setResp(response);
 
     // mount
