@@ -43,3 +43,14 @@ export const fetchAllTask = async () => {
     };
   }
 };
+export const updateTask = async (data) => {
+  try {
+    const response = await axios.patch(apiEP, data);
+    return response.data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: "error.message",
+    };
+  }
+};

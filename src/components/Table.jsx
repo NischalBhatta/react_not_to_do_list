@@ -28,14 +28,14 @@ export const Table = ({ taskList, switchTask, handleDeleteButton }) => {
                     <div className="">
                       <button
                         className="btn btn-danger mr-2"
-                        onClick={() => handleDeleteButton(item.id)}
+                        onClick={() => handleDeleteButton(item._id)}
                       >
                         <i className="fa-solid fa-trash-can"></i>
                       </button>
                       <button className="btn btn-warning">
                         <i
                           className="fa-solid fa-arrow-right"
-                          onClick={() => switchTask(item.id, "bad")}
+                          onClick={() => switchTask(item._id, "bad")}
                         ></i>
                       </button>
                     </div>
@@ -62,12 +62,12 @@ export const Table = ({ taskList, switchTask, handleDeleteButton }) => {
                     <button className="btn btn-warning">
                       <i
                         className="fa-solid fa-arrow-left"
-                        onClick={() => switchTask(item.id, "entry")}
+                        onClick={() => switchTask(item._id, "entry")}
                       ></i>
                     </button>
                     <button
                       className="btn btn-danger "
-                      onClick={() => handleDeleteButton(item.id)}
+                      onClick={() => handleDeleteButton(item._id)}
                     >
                       <i className="fa-solid fa-trash-can"></i>
                     </button>

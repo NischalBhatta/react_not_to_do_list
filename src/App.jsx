@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
-import { fetchAllTask, postTask } from "./helpers/axiosHelper";
+import { fetchAllTask, postTask, updateTask } from "./helpers/axiosHelper";
 import { useEffect } from "react";
 import { useRef } from "react";
 function App() {
@@ -43,15 +43,20 @@ function App() {
     //mount the task data to taskList state
     data?.status === "success" && setTaskList(data.tasks);
   };
-  const switchTask = (id, type) => {
-    setTaskList(
-      taskList.map((item) => {
-        if (item.id == id) {
-          item.type = type;
-        }
-        return item;
-      }),
-    );
+  const switchTask = async (_id, type) => {
+    // call the axiosHelper class to switch the task
+    const response = await updateTask({ _id, type });
+    setResp(response);
+
+    // mount
+    // setTaskList(
+    //   taskList.map((item) => {
+    //     if (item.id == id) {
+    //       item.type = type;
+    //     }
+    //     return item;
+    //   }),
+    // );
   };
   const handleDeleteButton = (id) => {
     if (window.confirm("Are you sure you want to delete this task?")) {
