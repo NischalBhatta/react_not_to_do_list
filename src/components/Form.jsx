@@ -14,6 +14,7 @@ export const Form = ({ addTaskList }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+
     addTaskList(form);
   };
   return (
@@ -32,6 +33,7 @@ export const Form = ({ addTaskList }) => {
             aria-label="task"
             name="task"
             id="task"
+            required
             onChange={handleOnChange}
           />
         </div>
@@ -44,6 +46,8 @@ export const Form = ({ addTaskList }) => {
             name="hr"
             id="hr"
             min="1"
+            max="100"
+            required
             onChange={handleOnChange}
           />
         </div>
