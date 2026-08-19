@@ -19,7 +19,7 @@ export const Form = ({ addTaskList }) => {
   return (
     <form
       id="form"
-      className="form  border p-5 rounded"
+      className="form shadow border p-5 rounded"
       onSubmit={handleOnSubmit}
       action="javascript:void(0)"
     >
@@ -48,7 +48,7 @@ export const Form = ({ addTaskList }) => {
           />
         </div>
         <div className="col-3 d-grid">
-          <button className="btn btn-primary">Submit</button>
+          <button className="btn btn-primary">Add New Task</button>
         </div>
       </div>
     </form>

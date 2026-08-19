@@ -2,7 +2,12 @@ import "./App.css";
 import React, { useState } from "react";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
-import { fetchAllTask, postTask, updateTask } from "./helpers/axiosHelper";
+import {
+  deleteTask,
+  fetchAllTask,
+  postTask,
+  updateTask,
+} from "./helpers/axiosHelper";
 import { useEffect } from "react";
 import { useRef } from "react";
 function App() {
@@ -19,26 +24,17 @@ function App() {
   }, []);
 
   const addTaskList = async (taskObj) => {
-    // if (ttlHr + hours > hrsPerWeek) {
-    //   return alert("Sorry Boss, not enough time left this week for this task.");
-    // }
-
-    // setTaskList([...taskList, obj]);
-
-    //call api and send data to database
-
     const response = await postTask(taskObj);
     setResp(response);
+    getAllTask();
   };
 
-  let i = 0;
   const getAllTask = async () => {
     //call the axiosHelper class to fetch all the task
 
     //mount the task data to taskList state
-    console.log(i++);
+
     const data = await fetchAllTask();
-    console.log(data);
 
     //mount the task data to taskList state
     data?.status === "success" && setTaskList(data.tasks);
@@ -51,34 +47,17 @@ function App() {
       getAllTask();
     }
     setResp(response);
-
-    // mount
-    // setTaskList(
-    //   taskList.map((item) => {
-    //     if (item.id == id) {
-    //       item.type = type;
-    //     }
-    //     return item;
-    //   }),
-    // );
   };
-  const handleDeleteButton = (id) => {
+  const handleDeleteButton = async (idsToDelete) => {
     if (window.confirm("Are you sure you want to delete this task?")) {
-      taskList = setTaskList(taskList.filter((item) => item.id !== id));
+      //
+      const response = await deleteTask(idsToDelete);
+      console.log(response);
+      setResp(response);
+      getAllTask();
     }
   };
 
-  // console.log(taskList);
-  const randomIdGenerator = (length = 6) => {
-    const str =
-      "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
-    let id = "";
-    for (let i = 0; i < 6; i++) {
-      const random = Math.floor(Math.random() * str.length);
-      id += str[random];
-    }
-    return id;
-  };
   return (
     <div className="wrapper">
       <div className="container p-5">
